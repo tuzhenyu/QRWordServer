@@ -20,4 +20,6 @@
 		<property name="prefix" value="/"></property>
 		<property name="suffix" value=".jsp"></property>
 	</bean> -->
+	
+	<mvc:resources location="/download/library/" mapping="/download/library/**"/>
 </beans>

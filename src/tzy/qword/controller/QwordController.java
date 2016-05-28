@@ -30,7 +30,7 @@ public class QwordController {
 	public String getLibraries(HttpServletRequest request){
 		
 		String root =request.getSession().getServletContext().getRealPath("/");
-		File file =new File(root + "\\WEB-INF\\word_librares\\");
+		File file =new File(root + "\\download\\library\\");
 		File[] files = file.listFiles();
 		List<Library> libraries = new ArrayList<>(files.length);
 		Library library ;
@@ -54,11 +54,11 @@ public class QwordController {
 	}
 	
 	@ResponseBody
-	@RequestMapping(value = "/getlibraryTable")
+	@RequestMapping(value = "/download")
 	public File getLibraryFile(HttpServletRequest request){
 		String lname = request.getParameter("library_name");
 		String root =request.getSession().getServletContext().getRealPath("/");
-		File file =new File(root + "\\WEB-INF\\word_librares\\" + lname + ".txt");
+		File file =new File(root + "\\download\\library\\" + lname + ".txt");
 		return file;
 	}
 	
@@ -67,7 +67,7 @@ public class QwordController {
 			return "四级单词词汇";
 		}
 		
-		if(DataBaseConfigure.DATA_BASE_CET4.equals(lname)){
+		if(DataBaseConfigure.DATA_BASE_CET6.equals(lname)){
 			return "六级单词词汇";
 		}
 		
@@ -79,26 +79,17 @@ public class QwordController {
 			return "雅思单词词汇";
 		}
 		
-		if(DataBaseConfigure.DATA_BASE_CET4.equals(lname)){
-			return null;
+		if(DataBaseConfigure.DATA_BASE_SEFC.equals(lname)){
+			return "高中英语";
 		}
 		
-		if(DataBaseConfigure.DATA_BASE_CET4.equals(lname)){
-			return null;
+		if(DataBaseConfigure.DATA_BASE_JEFC.equals(lname)){
+			return "初中英语";
 		}
 		
-		if(DataBaseConfigure.DATA_BASE_CET4.equals(lname)){
-			return null;
+		if(lname.equals(DataBaseConfigure.DATA_BASE_SAT)){
+			return "SAT词汇";
 		}
-		
-		if(DataBaseConfigure.DATA_BASE_CET4.equals(lname)){
-			return null;
-		}
-		
-		if(DataBaseConfigure.DATA_BASE_CET4.equals(lname)){
-			return null;
-		}
-		
 		return "未知词汇本";
 	}
 	
